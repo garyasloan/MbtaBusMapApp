@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MbtaBusMapApp.AboutPage"
+             Title="About">
+
+    <ScrollView Padding="20">
+        <VerticalStackLayout Spacing="20">
+            <Label Text="About This App"
+                   FontSize="24"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center" />
+
+            <Label Text="This app shows live MBTA bus vehicle locations on a map. 
+It uses the MBTA V3 API (https://www.mbta.com/developers/v3-api)."
+                   FontSize="16"
+                   HorizontalOptions="Center"
+                   HorizontalTextAlignment="Center" />
+
+            <Label Text="Version: 1.0.0"
+                   FontSize="14"
+                   HorizontalOptions="Center" />
+
+            <Label Text="Developed by Gary Sloan"
+                   FontSize="14"
+                   HorizontalOptions="Center" />
+
+            <Label Text="Disclaimer"
+                   FontAttributes="Bold"
+                   FontSize="18"
+                   HorizontalOptions="Center" />
+
+            <Label Text="This app is provided for informational purposes only and is not guaranteed to be accurate, complete, or up to date. Bus locations, schedules, and route information are subject to change without notice.
+
+By using this app, you agree that the developer is not responsible for any direct, indirect, incidental, or consequential damages, including but not limited to financial losses, missed connections, or any other issues that may arise from the use or inability to use this app.
+
+Always verify critical transportation information through official sources before making travel decisions."
+                   FontSize="12"
+                   HorizontalTextAlignment="Center" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:maps="clr-namespace:Microsoft.Maui.Controls.Maps;assembly=Microsoft.Maui.Controls.Maps"
+             x:Class="MbtaBusMapApp.MbtaMapPage">
+
+    <Grid RowDefinitions="Auto,Auto,*"
+        Padding="20"
+        RowSpacing="10">
+
+        <!--  Row 0: Buttons Grid with spacing -->
+        <Grid Grid.Row="0" ColumnDefinitions="*,Auto" ColumnSpacing="10">
+            <Button x:Name="RoutePickerButton"
+              Text="Select a Bus Route"
+              FontSize="14"
+              HorizontalOptions="Fill"
+              Clicked="OnShowRoutePickerClicked"
+              Grid.Column="0" />
+
+            <Button x:Name="RefreshButton"
+              Text="Refresh Map"
+              FontSize="14"
+              IsEnabled="False"
+              IsVisible="False"
+              Clicked="OnRefreshClicked"
+              Grid.Column="1"
+              HorizontalOptions="End" />
+        </Grid>
+
+        <!--  Row 1: Label -->
+        <Label x:Name="SelectedRouteLabel"
+           Grid.Row="1"
+           HorizontalOptions="Center"
+           VerticalOptions="Start"
+           LineBreakMode="NoWrap"
+           FontSize="14"
+           HorizontalTextAlignment="Center" />
+
+        <!--  Hidden Picker -->
+        <Picker x:Name="RoutePicker"
+            Title="Select a Bus Route"
+            SelectedIndexChanged="OnRouteSelected"
+            IsVisible="False" />
+
+        <!--  Row 2: Container grid for Map + Overlay Label -->
+        <Grid Grid.Row="2">
+            <!-- The Map (fills entire cell) -->
+            <maps:Map x:Name="BusMap"
+              IsShowingUser="True" />
+
+            <!-- The Overlay Label on top, shifted up slightly -->
+            <Label x:Name="NoBusesLabel"
+           Text="No buses currently active for the route selected."
+           TextColor="Red"
+           FontSize="18"
+           BackgroundColor="White"
+           Padding="10"
+           HorizontalOptions="Center"
+           VerticalOptions="End"
+           Margin="0,-50,0,0"   
+                IsVisible="False" />
+        </Grid>
+
+    </Grid>
+</ContentPage>
