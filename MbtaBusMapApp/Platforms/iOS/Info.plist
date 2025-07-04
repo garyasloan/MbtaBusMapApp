@@ -32,5 +32,8 @@
 	<string>MBTA Map</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.garysloan.mbtabusmapapp</string>
+
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>This app needs location access for map pins.</string>
 </dict>
 </plist>

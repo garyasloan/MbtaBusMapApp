@@ -1,45 +1,57 @@
 ﻿using CommunityToolkit.Maui;
+
+#if IOS
+using MbtaBusMapApp.Platforms.iOS; // ✔️ Only for iOS
+#endif
+
 using Microsoft.Extensions.Logging;
 using Microsoft.Maui.Controls.Handlers.Items;
 using Microsoft.Maui.Controls.Hosting;
+using Microsoft.Maui.Hosting;
+using SkiaSharp.Views.Maui.Controls.Hosting;
 using Syncfusion.Maui.Toolkit.Hosting;
 
-namespace MbtaBusMapApp
+namespace MbtaBusMapApp;
+
+public static class MauiProgram
 {
-    public static class MauiProgram
+    public static MauiApp CreateMauiApp()
     {
-        public static MauiApp CreateMauiApp()
-        {
-            var builder = MauiApp.CreateBuilder();
-            builder
-                .UseMauiApp<App>()
-                .UseMauiCommunityToolkit()
-                .ConfigureSyncfusionToolkit()
-                .ConfigureMauiHandlers(handlers =>
-                {
-#if IOS || MACCATALYST
-                    //handlers.AddHandler<Microsoft.Maui.Controls.CollectionView, Microsoft.Maui.Controls.Handlers.Items2.CollectionViewHandler2>();
-                    handlers.AddHandler<CollectionView, CollectionViewHandler>();
+        Console.WriteLine(" MauiProgram.CreateMauiApp starting up!");
+
+        var builder = MauiApp.CreateBuilder();
+
+        builder
+            .UseMauiApp<App>()
+            .UseMauiCommunityToolkit()
+            .ConfigureSyncfusionToolkit()
+            .UseSkiaSharp()
+            .UseMauiMaps()
+            .ConfigureMauiHandlers(handlers =>
+            {
+#if IOS
+                Console.WriteLine(" Registering ClusteredMapHandler for iOS");
+                handlers.AddHandler(typeof(Microsoft.Maui.Controls.Maps.Map), typeof(ClusteredMapHandler));
 #endif
-                })
-                .ConfigureFonts(fonts =>
-                {
-                    fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
-                    fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-                    fonts.AddFont("SegoeUI-Semibold.ttf", "SegoeSemibold");
-                    fonts.AddFont("FluentSystemIcons-Regular.ttf", Fonts.FluentUI.FontFamily);
-                });
+
+#if IOS || MACCATALYST
+                handlers.AddHandler<CollectionView, CollectionViewHandler>();
+#endif
+            })
+            .ConfigureFonts(fonts =>
+            {
+                fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
+                fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+                fonts.AddFont("SegoeUI-Semibold.ttf", "SegoeSemibold");
+                fonts.AddFont("FluentSystemIcons-Regular.ttf", Fonts.FluentUI.FontFamily);
+            });
 
 #if DEBUG
-            builder.Logging.AddDebug();
-            builder.Services.AddLogging(configure => configure.AddDebug());
+        builder.Logging.AddDebug();
+        Console.WriteLine(" Debug logging enabled");
 #endif
 
-            
-            builder.UseMauiMaps();
-
-            return builder.Build();
-
-        }
+        Console.WriteLine(" MauiProgram.CreateMauiApp finished building");
+        return builder.Build();
     }
 }

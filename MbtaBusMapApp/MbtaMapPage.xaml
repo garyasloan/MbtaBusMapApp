@@ -45,8 +45,10 @@
         <!--  Row 2: Container grid for Map + Overlay Label -->
         <Grid Grid.Row="2">
             <!-- The Map (fills entire cell) -->
-            <maps:Map x:Name="BusMap"
-              IsShowingUser="True" />
+            <Grid>
+                <maps:Map x:Name="BusMap" />
+
+            </Grid>
 
             <!-- The Overlay Label on top, shifted up slightly -->
             <Label x:Name="NoBusesLabel"

@@ -2,6 +2,13 @@
 
 namespace MbtaBusMapApp.Models
 {
+
+    public class MyClusterCenter
+    {
+        public int Count { get; set; }
+        public double Latitude { get; set; }
+        public double Longitude { get; set; }
+    }
     public class MbtaVehiclesResponse
     {
         [JsonPropertyName("data")]
