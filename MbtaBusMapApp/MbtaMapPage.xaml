@@ -30,7 +30,7 @@
         <!-- Row 1: Show All Buses -->
         <Button x:Name="ShowAllBusesButton"
                 Grid.Row="1"
-                Text="Show All Buses On Route (Zoom Out)"
+                Text="Show All Buses For This Route"
                 FontSize="14"
                 IsEnabled="False"
                 IsVisible="False"
