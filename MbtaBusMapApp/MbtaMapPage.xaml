@@ -5,63 +5,71 @@
              x:Class="MbtaBusMapApp.MbtaMapPage">
 
     <Grid RowDefinitions="Auto,Auto,*"
-        Padding="20"
-        RowSpacing="10">
+          Padding="20"
+          RowSpacing="10">
 
-        <!--  Row 0: Buttons Grid with spacing -->
+        <!-- Row 0: Buttons Grid with spacing -->
         <Grid Grid.Row="0" ColumnDefinitions="*,Auto" ColumnSpacing="10">
             <Button x:Name="RoutePickerButton"
-              Text="Select a Bus Route"
-              FontSize="14"
-              HorizontalOptions="Fill"
-              Clicked="OnShowRoutePickerClicked"
-              Grid.Column="0" />
+                    Text="Select a Bus Route"
+                    FontSize="14"
+                    HorizontalOptions="Fill"
+                    Clicked="OnShowRoutePickerClicked"
+                    Grid.Column="0" />
 
             <Button x:Name="RefreshButton"
-              Text="Refresh Map"
-              FontSize="14"
-              IsEnabled="False"
-              IsVisible="False"
-              Clicked="OnRefreshClicked"
-              Grid.Column="1"
-              HorizontalOptions="End" />
+                    Text="Refresh Map"
+                    FontSize="14"
+                    IsEnabled="False"
+                    IsVisible="False"
+                    Clicked="OnRefreshClicked"
+                    Grid.Column="1"
+                    HorizontalOptions="End" />
         </Grid>
 
-        <!--  Row 1: Label -->
+        <!-- Row 1: Selected Route Label -->
         <Label x:Name="SelectedRouteLabel"
-           Grid.Row="1"
-           HorizontalOptions="Center"
-           VerticalOptions="Start"
-           LineBreakMode="WordWrap"
-           MaxLines="2"
-           FontSize="14"
-           HorizontalTextAlignment="Center" />
+               Grid.Row="1"
+               HorizontalOptions="Center"
+               VerticalOptions="Start"
+               LineBreakMode="WordWrap"
+               MaxLines="2"
+               FontSize="14"
+               HorizontalTextAlignment="Center" />
 
-        <!--  Hidden Picker -->
+        <!-- Hidden Picker -->
         <Picker x:Name="RoutePicker"
-            Title="Select a Bus Route"
-            SelectedIndexChanged="OnRouteSelected"
-            IsVisible="False" />
+                Title="Select a Bus Route"
+                SelectedIndexChanged="OnRouteSelected"
+                IsVisible="False" />
 
-        <!--  Row 2: Container grid for Map + Overlay Label -->
+        <!-- Row 2: Map container with overlay label -->
         <Grid Grid.Row="2">
             <!-- The Map (fills entire cell) -->
+            <maps:Map x:Name="BusMap" />
+
+            <!-- Overlay Grid to align NoBusesLabel near top of map but not overlapping SelectedRouteLabel -->
             <Grid>
-                <maps:Map x:Name="BusMap" />
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="5" />
+                    <!-- Spacer row to push label down -->
+                    <RowDefinition Height="Auto" />
+                    <!-- Label row -->
+                    <RowDefinition Height="*" />
+                    <!-- Rest of map -->
+                </Grid.RowDefinitions>
 
+                <Label x:Name="NoBusesLabel"
+                       Grid.Row="1"
+                       Text="No buses currently active for the route selected."
+                       TextColor="Red"
+                       FontSize="18"
+                       BackgroundColor="White"
+                       Padding="10"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Start"
+                       IsVisible="False" />
             </Grid>
-
-            <!-- The Overlay Label on top, shifted up slightly -->
-            <Label x:Name="NoBusesLabel"
-           Text="No buses currently active for the route selected."
-           TextColor="Red"
-           FontSize="18"
-           BackgroundColor="White"
-           Padding="10"
-           HorizontalOptions="Center"
-           VerticalOptions="End"
-           Margin="0,-50,0,0"   
-                IsVisible="False" />
         </Grid>
 
     </Grid>
