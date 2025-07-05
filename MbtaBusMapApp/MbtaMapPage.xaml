@@ -45,32 +45,30 @@
 
         <!-- Row 2: Map container with overlay label -->
         <Grid Grid.Row="2">
-            <!-- The Map (fills entire cell) -->
-            <maps:Map x:Name="BusMap" />
+            <!-- The Map -->
+            <maps:Map x:Name="BusMap"
+            IsScrollEnabled="True"
+            IsZoomEnabled="True" />
 
-            <!-- Overlay Grid to align NoBusesLabel near top of map but not overlapping SelectedRouteLabel -->
-            <Grid>
+            <!-- Overlay Grid now transparent to input -->
+            <Grid InputTransparent="True">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="5" />
-                    <!-- Spacer row to push label down -->
                     <RowDefinition Height="Auto" />
-                    <!-- Label row -->
                     <RowDefinition Height="*" />
-                    <!-- Rest of map -->
                 </Grid.RowDefinitions>
 
                 <Label x:Name="NoBusesLabel"
-                       Grid.Row="1"
-                       Text="No buses currently active for the route selected."
-                       TextColor="Red"
-                       FontSize="18"
-                       BackgroundColor="White"
-                       Padding="10"
-                       HorizontalOptions="Center"
-                       VerticalOptions="Start"
-                       IsVisible="False" />
+           Grid.Row="1"
+           Text="No buses currently active for the route selected."
+           TextColor="Red"
+           FontSize="18"
+           BackgroundColor="White"
+           Padding="10"
+           HorizontalOptions="Center"
+           VerticalOptions="Start"
+           IsVisible="False" />
             </Grid>
         </Grid>
-
     </Grid>
 </ContentPage>

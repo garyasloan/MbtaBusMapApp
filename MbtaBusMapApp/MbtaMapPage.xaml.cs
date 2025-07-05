@@ -20,7 +20,7 @@ public partial class MbtaMapPage : ContentPage
         _mbtaApi = new MbtaApiService(apiKey);
 
         BusMap.MoveToRegion(MapSpan.FromCenterAndRadius(
-            new Location(42.3601, -71.0589),
+            new Location(42.3199, -71.0589),
             Distance.FromMiles(10)
         ));
 
@@ -112,6 +112,11 @@ public partial class MbtaMapPage : ContentPage
             else
             {
                 NoBusesLabel.IsVisible = true;
+                BusMap.MoveToRegion(
+                    MapSpan.FromCenterAndRadius(
+                        new Location(42.3199, -71.0589),
+                        Distance.FromMiles(10)));
+
             }
         }
         catch (Exception ex)
