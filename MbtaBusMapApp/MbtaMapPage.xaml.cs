@@ -30,8 +30,32 @@ public partial class MbtaMapPage : ContentPage
     private async void LoadRoutes()
     {
         var routes = await _mbtaApi.GetBusRoutesAsync();
-        RoutePicker.ItemsSource = routes.Select(r => r.DisplayName).ToList();
+
+        RoutePicker.ItemsSource = routes
+            .Select(r =>
+            {
+                if (r.DisplayName.StartsWith("708"))
+                    return r.DisplayName.Replace("708", "708 - (CT3)");
+                if (r.DisplayName.StartsWith("747"))
+                    return r.DisplayName.Replace("747", "747 - (CT2)");
+                if (r.DisplayName.StartsWith("746"))
+                    return r.DisplayName.Replace("746", "746 - (SLW)");
+                if (r.DisplayName.StartsWith("749"))
+                    return r.DisplayName.Replace("749", "749 - (SL5)");
+                if (r.DisplayName.StartsWith("751"))
+                    return r.DisplayName.Replace("751", "751 - (SL4)");
+                if (r.DisplayName.StartsWith("743"))
+                    return r.DisplayName.Replace("743", "743 - (SL3)");
+                if (r.DisplayName.StartsWith("742"))
+                    return r.DisplayName.Replace("742", "742 - (SL2)");
+                if (r.DisplayName.StartsWith("741"))
+                    return r.DisplayName.Replace("741", "741 - (SL1)");
+
+                return r.DisplayName;
+            })
+            .ToList();
     }
+
 
     private async void OnRouteSelected(object sender, EventArgs e)
     {
