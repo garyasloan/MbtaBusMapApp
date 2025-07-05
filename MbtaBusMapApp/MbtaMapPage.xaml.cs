@@ -68,6 +68,8 @@ public partial class MbtaMapPage : ContentPage
 
         RefreshButton.IsEnabled = true;
         RefreshButton.IsVisible = true;
+        ShowAllBusesButton.IsEnabled = true;
+        ShowAllBusesButton.IsVisible = true;
 
         await LoadVehiclesAsync(_selectedRouteNumber);
     }
@@ -80,6 +82,14 @@ public partial class MbtaMapPage : ContentPage
         await LoadVehiclesAsync(_selectedRouteNumber, true);
     }
 
+    private async void OnShowAllBusesClicked(object sender, EventArgs e)
+    {
+        if (string.IsNullOrWhiteSpace(_selectedRouteNumber))
+            return;
+
+        await LoadVehiclesAsync(_selectedRouteNumber, false);
+    }
+    
     private async Task LoadVehiclesAsync(string selectedRouteNumber, bool isRefreshing = false)
     {
         try
@@ -106,12 +116,19 @@ public partial class MbtaMapPage : ContentPage
 
             if (validVehicles.Any())
             {
-                FitMapToPins(validVehicles);
+                if (!isRefreshing)
+                    FitMapToPins(validVehicles);
                 NoBusesLabel.IsVisible = false;
+                ShowAllBusesButton.IsVisible = true;
+                RefreshButton.IsVisible = true;
+
             }
             else
             {
                 NoBusesLabel.IsVisible = true;
+                ShowAllBusesButton.IsVisible = false;
+                RefreshButton.IsVisible = false;
+
                 BusMap.MoveToRegion(
                     MapSpan.FromCenterAndRadius(
                         new Location(42.3199, -71.0589),

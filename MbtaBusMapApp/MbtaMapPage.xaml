@@ -4,21 +4,21 @@
              xmlns:maps="clr-namespace:Microsoft.Maui.Controls.Maps;assembly=Microsoft.Maui.Controls.Maps"
              x:Class="MbtaBusMapApp.MbtaMapPage">
 
-    <Grid RowDefinitions="Auto,Auto,*"
+    <Grid RowDefinitions="Auto,Auto,Auto,*"
           Padding="20"
           RowSpacing="10">
 
-        <!-- Row 0: Buttons Grid with spacing -->
+        <!-- Row 0: Buttons Grid -->
         <Grid Grid.Row="0" ColumnDefinitions="*,Auto" ColumnSpacing="10">
             <Button x:Name="RoutePickerButton"
-                    Text="Select a Bus Route"
+                    Text="Select Route"
                     FontSize="14"
                     HorizontalOptions="Fill"
                     Clicked="OnShowRoutePickerClicked"
                     Grid.Column="0" />
 
             <Button x:Name="RefreshButton"
-                    Text="Refresh Map"
+                    Text="Refresh Bus Locations"
                     FontSize="14"
                     IsEnabled="False"
                     IsVisible="False"
@@ -27,9 +27,19 @@
                     HorizontalOptions="End" />
         </Grid>
 
-        <!-- Row 1: Selected Route Label -->
+        <!-- Row 1: Show All Buses -->
+        <Button x:Name="ShowAllBusesButton"
+                Grid.Row="1"
+                Text="Show All Buses On Route (Zoom Out)"
+                FontSize="14"
+                IsEnabled="False"
+                IsVisible="False"
+                Clicked="OnShowAllBusesClicked"
+                HorizontalOptions="Center" />
+
+        <!-- Row 2: Selected Route Label -->
         <Label x:Name="SelectedRouteLabel"
-               Grid.Row="1"
+               Grid.Row="2"
                HorizontalOptions="Center"
                VerticalOptions="Start"
                LineBreakMode="WordWrap"
@@ -39,35 +49,33 @@
 
         <!-- Hidden Picker -->
         <Picker x:Name="RoutePicker"
-                Title="Select a Bus Route"
+                Title="Select Route"
                 SelectedIndexChanged="OnRouteSelected"
                 IsVisible="False" />
 
-        <!-- Row 2: Map container with overlay label -->
-        <Grid Grid.Row="2">
-            <!-- The Map -->
+        <!-- Row 3: Map container with overlay label -->
+        <Grid Grid.Row="3">
             <maps:Map x:Name="BusMap"
-            IsScrollEnabled="True"
-            IsZoomEnabled="True" />
+                      IsScrollEnabled="True"
+                      IsZoomEnabled="True" />
 
-            <!-- Overlay Grid now transparent to input -->
             <Grid InputTransparent="True">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="5" />
+                    <RowDefinition Height="0" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
 
                 <Label x:Name="NoBusesLabel"
-           Grid.Row="1"
-           Text="No buses currently active for the route selected."
-           TextColor="Red"
-           FontSize="18"
-           BackgroundColor="White"
-           Padding="10"
-           HorizontalOptions="Center"
-           VerticalOptions="Start"
-           IsVisible="False" />
+                       Grid.Row="1"
+                       Text="No buses currently active for the route selected."
+                       TextColor="Red"
+                       FontSize="18"
+                       BackgroundColor="White"
+                       Padding="10"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Start"
+                       IsVisible="False" />
             </Grid>
         </Grid>
     </Grid>
