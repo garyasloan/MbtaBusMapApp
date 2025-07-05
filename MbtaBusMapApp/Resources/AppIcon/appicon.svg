@@ -3,7 +3,13 @@
   <!-- Black background -->
   <rect width="456" height="456" fill="#000000" />
 
-  <!-- White bus icon centered and scaled down with more padding -->
-  <path d="M136 320a16 16 0 1 0 0-32 16 16 0 0 0 0 32Zm184 0a16 16 0 1 0 0-32 16 16 0 0 0 0 32ZM120 112h216v96H120v-96Zm216-40H120c-22 0-40 18-40 40v176c0 22 18 40 40 40v32a8 8 0 0 0 8 8h24a8 8 0 0 0 8-8v-32h144v32a8 8 0 0 0 8 8h24a8 8 0 0 0 8-8v-32c22 0 40-18 40-40V112c0-22-18-40-40-40Z"
-    fill="#FFFFFF" transform="scale(0.9) translate(25,25)" />
+  <!-- White bus icon centered, scaled, and with lowered wheels -->
+  <path d="
+    M136 340a16 16 0 1 0 0-32 16 16 0 0 0 0 32Z
+    M320 340a16 16 0 1 0 0-32 16 16 0 0 0 0 32Z
+    M120 112h216v96H120v-96Z
+    M336 72H120c-22 0-40 18-40 40v176c0 22 18 40 40 40v32a8 8 0 0 0 8 8h24a8 8 0 0 0 8-8v-32h144v32a8 8 0 0 0 8 8h24a8 8 0 0 0 8-8v-32c22 0 40-18 40-40V112c0-22-18-40-40-40Z"
+    fill="#FFFFFF"
+    transform="scale(0.9) translate(25,25)"
+  />
 </svg>
