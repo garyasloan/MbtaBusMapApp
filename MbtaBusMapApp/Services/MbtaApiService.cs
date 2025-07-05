@@ -19,13 +19,29 @@ namespace MbtaBusMapApp.Services
             string url = $"https://api-v3.mbta.com/routes?filter[type]=3&api_key={_apiKey}";
             var response = await _httpClient.GetStringAsync(url);
             using var doc = JsonDocument.Parse(response);
-            return doc.RootElement.GetProperty("data").EnumerateArray()
+
+            var routes = doc.RootElement.GetProperty("data").EnumerateArray()
                 .Select(route => new Route
                 {
                     Id = route.GetProperty("id").GetString() ?? string.Empty,
                     LongName = route.GetProperty("attributes").GetProperty("long_name").GetString() ?? string.Empty
-                }).ToList();
+                })
+                .OrderBy(r =>
+                {
+                    var numericPart = new string(r.Id.TakeWhile(char.IsDigit).ToArray());
+                    if (int.TryParse(numericPart, out int num))
+                    {
+                        return num;
+                    }
+                    else
+                    {
+                        return int.MaxValue;
+                    }
+                })
+                .ToList();
+            return routes;
         }
+
 
         public async Task<List<Vehicle>> GetVehiclesAsync(string routeId)
         {
