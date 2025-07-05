@@ -32,7 +32,8 @@
            Grid.Row="1"
            HorizontalOptions="Center"
            VerticalOptions="Start"
-           LineBreakMode="NoWrap"
+           LineBreakMode="WordWrap"
+           MaxLines="2"
            FontSize="14"
            HorizontalTextAlignment="Center" />
 
