@@ -1,52 +1,41 @@
-<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:maps="clr-namespace:Microsoft.Maui.Controls.Maps;assembly=Microsoft.Maui.Controls.Maps"
              x:Class="MbtaBusMapApp.MbtaMapPage">
 
-    <Grid RowDefinitions="Auto,Auto,Auto,*"
-          Padding="20"
-          RowSpacing="10">
+    <Grid RowDefinitions="Auto,Auto,Auto,*,Auto"
+      Padding="20"
+      RowSpacing="10">
 
-        <!-- Row 0: Buttons Grid -->
+        <!-- Row 0: Buttons Grid with two columns -->
         <Grid Grid.Row="0" ColumnDefinitions="*,Auto" ColumnSpacing="10">
             <Button x:Name="RoutePickerButton"
-                    Text="Select Route"
-                    FontSize="14"
-                    HorizontalOptions="Fill"
-                    Clicked="OnShowRoutePickerClicked"
-                    Grid.Column="0" />
+                Text="Select Route"
+                FontSize="14"
+                HorizontalOptions="Fill"
+                Clicked="OnShowRoutePickerClicked"
+                Grid.Column="0" />
 
-            <Button x:Name="RefreshButton"
-                    Text="Refresh Bus Locations"
-                    FontSize="14"
-                    IsEnabled="False"
-                    IsVisible="False"
-                    Clicked="OnRefreshClicked"
-                    Grid.Column="1"
-                    HorizontalOptions="End" />
-        </Grid>
-
-        <!-- Row 1: Show All Buses -->
-        <Button x:Name="ShowAllBusesButton"
-                Grid.Row="1"
-                Text="Show All Buses For This Route"
+            <Button x:Name="ShowAllBusesButton"
+                Text="Show All Buses on Route"
                 FontSize="14"
                 IsEnabled="False"
                 IsVisible="False"
                 Clicked="OnShowAllBusesClicked"
-                HorizontalOptions="Center" />
+                HorizontalOptions="Center"
+                Grid.Column="1" />
+        </Grid>
 
         <!-- Row 2: Selected Route Label -->
         <Label x:Name="SelectedRouteLabel"
-       Grid.Row="2"
-       HorizontalOptions="Center"
-       VerticalOptions="Start"
-       LineBreakMode="WordWrap"
-       MaxLines="2"
-       FontSize="15"
-       FontAttributes="Bold"
-       HorizontalTextAlignment="Center" />
+               Grid.Row="2"
+               HorizontalOptions="Center"
+               VerticalOptions="Start"
+               LineBreakMode="WordWrap"
+               MaxLines="2"
+               FontSize="15"
+               FontAttributes="Bold"
+               HorizontalTextAlignment="Center" />
 
         <!-- Hidden Picker -->
         <Picker x:Name="RoutePicker"
@@ -79,5 +68,16 @@
                        IsVisible="False" />
             </Grid>
         </Grid>
+
+        <!-- ✅ New Row 4: Refresh Button under map -->
+        <Button x:Name="RefreshButton"
+                Grid.Row="4"
+                Text="Refresh Bus Locations"
+                FontSize="14"
+                IsEnabled="False"
+                IsVisible="False"
+                Clicked="OnRefreshClicked"
+                HorizontalOptions="Center" />
+
     </Grid>
 </ContentPage>
