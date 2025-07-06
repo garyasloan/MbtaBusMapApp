@@ -149,15 +149,39 @@ public partial class MbtaMapPage : ContentPage
         double minLng = vehicles.Min(v => v.Longitude);
         double maxLng = vehicles.Max(v => v.Longitude);
 
-        double latSpan = Math.Max(maxLat - minLat, 0.005) * 1.2;
-        double lngSpan = Math.Max(maxLng - minLng, 0.005) * 1.2;
+        // Calculate span in degrees
+        double latSpan = maxLat - minLat;
+        double lngSpan = maxLng - minLng;
+
+        // Add ~30 feet buffer in degrees
+        double feetToDegreesLat = 60.0 / 364000.0;
+        double avgLatRad = ((minLat + maxLat) / 2) * Math.PI / 180.0;
+        double feetToDegreesLng = 60.0 / (288200.0 * Math.Cos(avgLatRad));
+
+        latSpan = Math.Max(latSpan, feetToDegreesLat);
+        lngSpan = Math.Max(lngSpan, feetToDegreesLng);
+
+        // Convert 1 mile to degrees (~69 miles per degree latitude)
+        double milesToDegreesLat = 1.0 / 69.0;  // ≈ 0.0725 degrees
+        double milesToDegreesLng = 1.0 / (Math.Cos(avgLatRad) * 69.172);
+
+        // Ensure minimum 1 mile radius
+        latSpan = Math.Max(latSpan, milesToDegreesLat);
+        lngSpan = Math.Max(lngSpan, milesToDegreesLng);
+
+        // Add slight extra padding
+        latSpan *= 1.2;
+        lngSpan *= 1.2;
+
+        var centerLat = (minLat + maxLat) / 2;
+        var centerLng = (minLng + maxLng) / 2;
 
         BusMap.MoveToRegion(new MapSpan(
-            new Location((minLat + maxLat) / 2, (minLng + maxLng) / 2),
-            latSpan,
-            lngSpan
+            new Location(centerLat, centerLng),
+            latSpan, lngSpan
         ));
     }
+
 
     private void OnShowRoutePickerClicked(object sender, EventArgs e)
     {
