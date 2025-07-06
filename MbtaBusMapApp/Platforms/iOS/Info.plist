@@ -29,7 +29,7 @@
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/appicon.appiconset</string>
 	<key>CFBundleDisplayName</key>
-	<string>MBTA Map</string>
+	<string>MBTA Routes</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.garysloan.mbtabusmapapp</string>
 

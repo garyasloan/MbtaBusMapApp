@@ -11,15 +11,28 @@
                    FontAttributes="Bold"
                    HorizontalOptions="Center" />
 
-            <Label Text="This app shows live MBTA bus vehicle locations on a map. 
-It uses the MBTA V3 API (https://www.mbta.com/developers/v3-api)."
-                   FontSize="16"
-                   HorizontalOptions="Center"
-                   HorizontalTextAlignment="Center" />
+            <VerticalStackLayout Spacing="0" Padding="0">
+                <Label 
+                    Text="This app shows live MBTA bus locations for a selected route on a map.&#10;It uses the MBTA V3 API:"
+                    FontSize="16"
+                    HorizontalOptions="Center"
+                    HorizontalTextAlignment="Center"
+                    Margin="0"
+                    Padding="0" />
+
+                <Label 
+                    Text="https://www.mbta.com/developers/v3-api"
+                    FontSize="14"
+                    HorizontalOptions="Center"
+                    Margin="0"
+                    Padding="0" />      
+            </VerticalStackLayout>
+
 
             <Label Text="Version: 1.0.0"
-                   FontSize="14"
-                   HorizontalOptions="Center" />
+       FontSize="14"
+       HorizontalOptions="Center" />
+
 
             <Label Text="Developed by Gary Sloan"
                    FontSize="14"
