@@ -6,18 +6,18 @@
 
     <ScrollView Padding="20">
         <VerticalStackLayout Spacing="20">
-            <Label Text="About This App"
-                   FontSize="24"
-                   FontAttributes="Bold"
-                   HorizontalOptions="Center" />
+
+            <Label Text="Developed by Gary Sloan"
+               FontSize="14"
+                HorizontalOptions="Center" />
 
             <VerticalStackLayout Spacing="0" Padding="0">
                 <Label 
-                    Text="This app shows live MBTA bus locations for a selected route on a map.&#10;It uses the MBTA V3 API:"
-                    FontSize="16"
+                    Text="This app shows live MBTA bus locations for a selected route on a map and uses the MBTA V3 API:"
+                    FontSize="14"
                     HorizontalOptions="Center"
                     HorizontalTextAlignment="Center"
-                    Margin="0"
+                    Margin="10"
                     Padding="0" />
 
                 <Label 
@@ -29,10 +29,6 @@
             </VerticalStackLayout>
 
 
-            <Label Text="Developed by Gary Sloan"
-                   FontSize="14"
-                   HorizontalOptions="Center" />
-
             <Label Text="Disclaimer"
                    FontAttributes="Bold"
                    FontSize="18"
@@ -40,11 +36,13 @@
 
             <Label Text="This app is provided for informational purposes only and is not guaranteed to be accurate, complete, or up to date. Bus locations, schedules, and route information are subject to change without notice.
 
+This app is not associated with, affiliated with, or endorsed by the Massachusetts Bay Transportation Authority (MBTA). 
+
 By using this app, you agree that the developer is not responsible for any direct, indirect, incidental, or consequential damages, including but not limited to financial losses, missed connections, or any other issues that may arise from the use or inability to use this app.
 
 Always verify critical transportation information through official sources before making travel decisions."
-                   FontSize="12"
-                   HorizontalTextAlignment="Center" />
+       FontSize="14"
+       HorizontalTextAlignment="Center" />
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
