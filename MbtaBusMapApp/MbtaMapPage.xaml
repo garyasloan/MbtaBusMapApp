@@ -17,7 +17,7 @@
                 Grid.Column="0" />
 
             <Button x:Name="ShowAllBusesButton"
-                Text="Show All Buses"
+                Text="Reset Route View"
                 FontSize="14"
                 IsEnabled="False"
                 IsVisible="False"
@@ -58,7 +58,7 @@
 
                 <Label x:Name="NoBusesLabel"
                        Grid.Row="1"
-                       Text="No buses currently active for the route selected."
+                       Text="No active buses on this route."
                        TextColor="Red"
                        FontSize="18"
                        BackgroundColor="White"
@@ -72,7 +72,7 @@
         <!-- ✅ New Row 4: Refresh Button under map -->
         <Button x:Name="RefreshButton"
                 Grid.Row="4"
-                Text="Refresh Bus Locations on Map"
+                Text="Refresh Bus View"
                 FontSize="14"
                 IsEnabled="False"
                 IsVisible="False"

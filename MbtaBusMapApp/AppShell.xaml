@@ -10,7 +10,7 @@
     Title="MbtaBusMapApp">
 
     <ShellContent
-        Title="MBTA Bus Locations"
+        Title="MBTA Bus Routes"
         ContentTemplate="{DataTemplate local:MbtaMapPage}"
         Route="main" />
 
