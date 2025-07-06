@@ -39,13 +39,14 @@
 
         <!-- Row 2: Selected Route Label -->
         <Label x:Name="SelectedRouteLabel"
-               Grid.Row="2"
-               HorizontalOptions="Center"
-               VerticalOptions="Start"
-               LineBreakMode="WordWrap"
-               MaxLines="2"
-               FontSize="14"
-               HorizontalTextAlignment="Center" />
+       Grid.Row="2"
+       HorizontalOptions="Center"
+       VerticalOptions="Start"
+       LineBreakMode="WordWrap"
+       MaxLines="2"
+       FontSize="15"
+       FontAttributes="Bold"
+       HorizontalTextAlignment="Center" />
 
         <!-- Hidden Picker -->
         <Picker x:Name="RoutePicker"
