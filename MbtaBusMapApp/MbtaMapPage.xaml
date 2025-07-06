@@ -17,7 +17,7 @@
                 Grid.Column="0" />
 
             <Button x:Name="ShowAllBusesButton"
-                Text="Show All Buses on Route"
+                Text="Show All Buses"
                 FontSize="14"
                 IsEnabled="False"
                 IsVisible="False"
@@ -72,7 +72,7 @@
         <!-- ✅ New Row 4: Refresh Button under map -->
         <Button x:Name="RefreshButton"
                 Grid.Row="4"
-                Text="Refresh Bus Locations"
+                Text="Refresh Bus Locations on Map"
                 FontSize="14"
                 IsEnabled="False"
                 IsVisible="False"
