@@ -58,7 +58,7 @@
 
                 <Label x:Name="NoBusesLabel"
                        Grid.Row="1"
-                       Text="No active buses on this route."
+                       Text="No active buses on this route"
                        TextColor="Red"
                        FontSize="18"
                        BackgroundColor="White"
