@@ -10,13 +10,10 @@ public class ClusteredMapHandler : MapHandler
 {
     protected override MauiMKMapView CreatePlatformView()
     {
-        Console.WriteLine(" ClusteredMapHandler.CreatePlatformView called");
-
         var mapView = base.CreatePlatformView();
 
         if (OperatingSystem.IsIOSVersionAtLeast(11))
         {
-            Console.WriteLine(" Registering clustering view");
             mapView.Register(typeof(MKMarkerAnnotationView), MKMapViewDefault.AnnotationViewReuseIdentifier);
         }
 
@@ -28,8 +25,6 @@ public class ClusteredMapHandler : MapHandler
     {
         base.ConnectHandler(platformView);
 
-        Console.WriteLine(" Hooking native annotation handler");
-
         platformView.GetViewForAnnotation = (mapView, annotation) =>
         {
             if (annotation is MKUserLocation)
@@ -37,7 +32,6 @@ public class ClusteredMapHandler : MapHandler
 
             if (annotation is MKClusterAnnotation cluster)
             {
-                Console.WriteLine($" Cluster: {cluster.MemberAnnotations.Length} pins");
                 var clusterView = new MKMarkerAnnotationView(cluster, "Cluster");
                 clusterView.MarkerTintColor = UIColor.Red;
                 return clusterView;

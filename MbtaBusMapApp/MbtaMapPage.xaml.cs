@@ -6,7 +6,6 @@ using Microsoft.Maui.Controls.Maps;
 using Microsoft.Maui.Maps;
 
 namespace MbtaBusMapApp;
-
 public partial class MbtaMapPage : ContentPage
 {
     private readonly MbtaApiService _mbtaApi;
@@ -55,8 +54,6 @@ public partial class MbtaMapPage : ContentPage
             })
             .ToList();
     }
-
-
     private async void OnRouteSelected(object sender, EventArgs e)
     {
         var fullRouteName = RoutePicker.SelectedItem?.ToString()?.Trim();
@@ -89,7 +86,7 @@ public partial class MbtaMapPage : ContentPage
 
         await LoadVehiclesAsync(_selectedRouteNumber, false);
     }
-    
+
     private async Task LoadVehiclesAsync(string selectedRouteNumber, bool isRefreshing = false)
     {
         try
@@ -100,8 +97,6 @@ public partial class MbtaMapPage : ContentPage
                 !double.IsNaN(v.Latitude) && v.Latitude >= -90 && v.Latitude <= 90 &&
                 !double.IsNaN(v.Longitude) && v.Longitude >= -180 && v.Longitude <= 180
             ).ToList();
-
-            Console.WriteLine($" ########################### Total vehicles fetched: {vehicles.Count}");
 
             BusMap.Pins.Clear();
 
@@ -181,7 +176,6 @@ public partial class MbtaMapPage : ContentPage
             latSpan, lngSpan
         ));
     }
-
 
     private void OnShowRoutePickerClicked(object sender, EventArgs e)
     {

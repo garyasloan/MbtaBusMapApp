@@ -1,7 +1,7 @@
 ﻿using CommunityToolkit.Maui;
 
 #if IOS
-using MbtaBusMapApp.Platforms.iOS; // ✔️ Only for iOS
+using MbtaBusMapApp.Platforms.iOS; // Only for iOS
 #endif
 
 using Microsoft.Extensions.Logging;
@@ -17,8 +17,6 @@ public static class MauiProgram
 {
     public static MauiApp CreateMauiApp()
     {
-        Console.WriteLine(" MauiProgram.CreateMauiApp starting up!");
-
         var builder = MauiApp.CreateBuilder();
 
         builder
@@ -30,7 +28,6 @@ public static class MauiProgram
             .ConfigureMauiHandlers(handlers =>
             {
 #if IOS
-                Console.WriteLine(" Registering ClusteredMapHandler for iOS");
                 handlers.AddHandler(typeof(Microsoft.Maui.Controls.Maps.Map), typeof(ClusteredMapHandler));
 #endif
 
@@ -48,10 +45,8 @@ public static class MauiProgram
 
 #if DEBUG
         builder.Logging.AddDebug();
-        Console.WriteLine(" Debug logging enabled");
 #endif
 
-        Console.WriteLine(" MauiProgram.CreateMauiApp finished building");
         return builder.Build();
     }
 }

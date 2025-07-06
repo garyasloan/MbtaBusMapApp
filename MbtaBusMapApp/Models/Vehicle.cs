@@ -105,5 +105,4 @@ namespace MbtaBusMapApp.Models
             _ => "Unknown"
         };
     }
-
 }

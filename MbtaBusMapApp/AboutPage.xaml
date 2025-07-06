@@ -29,11 +29,6 @@
             </VerticalStackLayout>
 
 
-            <Label Text="Version: 1.0.0"
-       FontSize="14"
-       HorizontalOptions="Center" />
-
-
             <Label Text="Developed by Gary Sloan"
                    FontSize="14"
                    HorizontalOptions="Center" />

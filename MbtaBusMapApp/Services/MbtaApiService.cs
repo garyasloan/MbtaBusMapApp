@@ -13,7 +13,6 @@ namespace MbtaBusMapApp.Services
             _apiKey = apiKey;
             _httpClient = new HttpClient();
         }
-
         public async Task<List<Route>> GetBusRoutesAsync()
         {
             string url = $"https://api-v3.mbta.com/routes?filter[type]=3&api_key={_apiKey}";
@@ -42,10 +41,8 @@ namespace MbtaBusMapApp.Services
             return routes;
         }
 
-
         public async Task<List<Vehicle>> GetVehiclesAsync(string routeId)
         {
-            //string url = $"https://api-v3.mbta.com/vehicles?filter[route]={routeId}&api_key={_apiKey}";
             string url = $"https://api-v3.mbta.com/vehicles?filter[route]={routeId}&include=trip&api_key={_apiKey}";
             var response = await _httpClient.GetStringAsync(url);
             using var doc = JsonDocument.Parse(response);
@@ -63,8 +60,7 @@ namespace MbtaBusMapApp.Services
             string url = $"https://api-v3.mbta.com/vehicles?filter[route]={routeId}&include=trip&api_key={_apiKey}";
 
             var json = await _httpClient.GetStringAsync(url);
-            Console.WriteLine($"Raw JSON: {json}");
-
+            
             var wrapper = JsonSerializer.Deserialize<MbtaVehiclesResponse>(json);
 
             var tripLookup = wrapper?.Included?.ToDictionary(t => t.Id, t => t) ?? new();
@@ -79,7 +75,6 @@ namespace MbtaBusMapApp.Services
                 if (double.IsNaN(lat) || lat < -90 || lat > 90 ||
                     double.IsNaN(lng) || lng < -180 || lng > 180)
                 {
-                    Console.WriteLine($"Skipping invalid vehicle {v.Id} lat={lat} lng={lng}");
                     continue;
                 }
 
@@ -106,7 +101,6 @@ namespace MbtaBusMapApp.Services
                     // Some feeds might use trip's direction_id if it differs:
                     if (tripData.Attributes.DirectionId != vehicle.Trip.DirectionId)
                     {
-                        Console.WriteLine($"Trip override: {vehicle.Id} uses trip direction {tripData.Attributes.DirectionId}");
                         vehicle.Trip.DirectionId = tripData.Attributes.DirectionId;
                     }
                 }
@@ -118,8 +112,6 @@ namespace MbtaBusMapApp.Services
                 vehicle.DisplayName = $"# {vehicle.Id.Replace("y", "")}\nto {vehicle.Trip.Headsign}";
                 vehicles.Add(vehicle);
             }
-
-            Console.WriteLine($"Returning {vehicles.Count} vehicles");
             return vehicles;
         }
     }
